@@ -10,5 +10,6 @@
   <a href="/events">Show All Events</a>
   <a href="/events/add">Add Event</a>
   <a href="/users">Show all users</a>
+  <a href="/users/add">Add user</a>
   </body>
 </html>
