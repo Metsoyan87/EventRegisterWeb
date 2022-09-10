@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,5 +21,6 @@ public class Event {
     private double price;
     private EventType eventType;
     private Date eventDate;
+    private List<User> users;
 
 }

@@ -1,6 +1,5 @@
 package servlet;
 
-import lombok.SneakyThrows;
 import manager.EventManager;
 import manager.UserManager;
 import model.Event;
@@ -15,16 +14,19 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/users")
-public class UserServlet extends HttpServlet {
+public class UsersServlet extends HttpServlet {
 
     private UserManager userManager = new UserManager();
-    @SneakyThrows
+    private EventManager eventManager = new EventManager();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> userLists = userManager.getAllUsers();
-        req.setAttribute("users", userLists);
+        List<User> userList = userManager.getAll();
+        for (User user : userList) {
+            List<Event> events = eventManager.getEventsByUserId(user.getId());
+            user.setEvents(events);
+        }
+        req.setAttribute("users", userList);
         req.getRequestDispatcher("/WEB-INF/users.jsp").forward(req, resp);
-
     }
-
 }

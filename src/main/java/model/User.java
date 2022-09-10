@@ -1,12 +1,15 @@
 package model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
+@EqualsAndHashCode(exclude = "events")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -16,12 +19,9 @@ public class User {
     private String name;
     private String surname;
     private String email;
-    private int eventId;
+    private List<Event> events;
+    private String profilePic;
+    private String password;
+    private UserRole userRole;
 
-    public User(String name, String surname, String email, int eventId) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.eventId = eventId;
-    }
 }

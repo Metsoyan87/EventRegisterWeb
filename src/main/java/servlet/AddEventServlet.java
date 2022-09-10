@@ -4,6 +4,8 @@ import lombok.SneakyThrows;
 import manager.EventManager;
 import model.Event;
 import model.EventType;
+import model.User;
+import model.UserRole;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +18,8 @@ import java.text.SimpleDateFormat;
 @WebServlet(urlPatterns = "/events/add")
 public class AddEventServlet extends HttpServlet {
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
     private EventManager eventManager = new EventManager();
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,23 +29,24 @@ public class AddEventServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String name = req.getParameter("name");
         String place = req.getParameter("place");
         boolean isOnline = Boolean.valueOf(req.getParameter("isOnline"));
         EventType eventType = EventType.valueOf(req.getParameter("eventType"));
         double price = Double.parseDouble(req.getParameter("price"));
         String eventDateStr = req.getParameter("eventDate");
+
         Event event = Event.builder()
                 .name(name)
                 .place(place)
-                .isOnline(isOnline)
                 .isOnline(isOnline)
                 .eventType(eventType)
                 .price(price)
                 .eventDate(sdf.parse(eventDateStr))
                 .build();
+
         eventManager.add(event);
         resp.sendRedirect("/events");
     }
+
 }
