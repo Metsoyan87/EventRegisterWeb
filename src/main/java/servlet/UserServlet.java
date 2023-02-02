@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/users")
-public class UsersServlet extends HttpServlet {
+public class UserServlet extends HttpServlet {
 
     private UserManager userManager = new UserManager();
     private EventManager eventManager = new EventManager();

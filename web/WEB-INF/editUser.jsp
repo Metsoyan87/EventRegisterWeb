@@ -21,9 +21,12 @@ Please update User's data:
     <input type="email" name="email" value="<%=user.getEmail() %>"/> <br>
     <select name="eventId">
         <% for (Event event : events) {
-            if (event.equals(user.getEvent())) {
+            if (event.equals(user.getEvents())) {
         %>
-        <option selected value="<%=event.getId()%>"><%=event.getName()%> <%=event.getPlace()%> (<%=event.getPrice()%>)
+        <option selected value="<%=event.getId()%>">
+            <%=event.getName()%>
+            <%=event.getPlace()%>
+            (<%=event.getPrice()%>)
         </option>
         <% } else { %>
         <option value="<%=event.getId()%>"><%=event.getName()%> <%=event.getPlace()%> (<%=event.getPrice()%>)</option>
